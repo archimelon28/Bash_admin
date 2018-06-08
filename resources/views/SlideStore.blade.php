@@ -75,9 +75,11 @@
                                         <div class="fallback">
                                             <input name="gambar" type="file"/>
                                         </div>
-                                        <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
-                                            <i class="material-icons">save</i>
-                                        </button>
+                                        <div style="text-align: right">
+                                                <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">save</i>
+                                                </button>
+                                            </div>
                                     </form>
                                 </div>
                             </div>

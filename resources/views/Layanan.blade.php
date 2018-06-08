@@ -5,6 +5,11 @@
             <div class="block-header">
             </div>
             <!-- Basic Table -->
+@if(Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
+                </div>
+            @endif
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -41,7 +46,7 @@
                                         <th scope="row">{{ $no++ }}</th>
                                         <td>{{$l->judul}}</td>
                                         <td>{{$l->deskripsi}}</td>
-                                        <td><img src="https://konsuldok.com/konsuldok_profil/uploads/layanan/{{$l->gambar}}" style="height: 100px;width: 100px"></td>
+                                        <td><img src="bash_profile/uploads/layanan/{{$l->gambar}}" style="height: 100px;width: 100px"></td>
                                         <td>@php if($l->isAktif == 1)
                                             {
                                                 echo "Aktif";

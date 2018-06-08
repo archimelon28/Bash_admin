@@ -12,7 +12,7 @@
             <!-- Widgets -->
             <div class="row clearfix">
                 <div class="col-lg-6 col-md-3 col-sm-6 col-xs-12">
-                    <h3>Selamat datang di konsuldok</h3>
+                    <h3>Selamat datang di Bash</h3>
                     <p>Untuk tutorial penggunaan <a href="{{asset('assets/img/upload/doc/Konsuldok_web_profile_manual.pdf')}}">Download</a></p>
                     <!-- <div class="info-box bg-pink hover-expand-effect">
                          <div class="icon">

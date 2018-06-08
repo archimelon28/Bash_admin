@@ -71,37 +71,18 @@
                                 <div class="body">
                                     <form action="/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">
                                         <div class="fallback">
-                                            <img src="..\..\assets\images\upload\catering\berita\{{$Berita->gambar_utama}}" style="height: 100px;width: 100px">
+                                            <img src="../../bash_profile/uploads/berita/{{$Berita->gambar_utama}}" style="height: 100px;width: 100px">
                                         </div>
                                     </form>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">File:</label>
                                     <input name="gambar_utama" type="file"/>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card">
-                                <div class="body">
-                                    <div class="demo-masked-input">
-                                        <div class="row clearfix">
-                                            <div class="col-sm-12">
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" value="{{$Berita->id_admin}}" name="id_admin" />
-                                                    </div>
-                                                </div>
+                                <div style="text-align: right">
+                                                <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">save</i>
+                                                </button>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
-                                        <i class="material-icons">save</i>
-                                    </button>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>

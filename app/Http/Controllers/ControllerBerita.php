@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ModelBerita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
@@ -60,13 +61,13 @@ class ControllerBerita extends Controller
         $Berita-> judul = $judul;
         $Berita-> isi =$isi;
         $ext = $gambar_utama->getClientOriginalExtension();
-        $newName = rand(100000,1001238912).".".$ext;
-        $gambar_utama->move('assets/images/upload/catering/berita/',$newName);
+        $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+        $gambar_utama->move('bash_profile/uploads/berita',$newName);
         $Berita->gambar_utama= $newName;
-        $Berita-> id_admin = 1;
+        $Berita-> id_admin = Session::get('id_admin');
         $Berita->save();
 
-        return redirect()->route('berita.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('berita.index')->with('alert-success','Success insert data!');
     }
 
     /**
@@ -104,15 +105,15 @@ class ControllerBerita extends Controller
         $Berita = \App\ModelBerita::findOrFail($id_news);
         $judul = $request->input('judul');
         $isi = $request->input('isi');
-        if (empty($request->file('gambar'))){
+        if (empty($request->file('gambar_utama'))){
             $Berita->gambar_utama = $Berita->gambar_utama;
         }
         else{
-            unlink('assets/images/upload/catering/berita/'.$Berita->gambar_utama); //menghapus file lama
+            unlink('bash_profile/uploads/berita/'.$Berita->gambar_utama); //menghapus file lama
             $gambar_utama= $request->file('gambar_utama');
             $ext = $gambar_utama->getClientOriginalExtension();
-            $newName = rand(100000,1001238912).".".$ext;
-            $gambar_utama->move('assets/images/upload/catering/berita/',$newName);
+            $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+            $gambar_utama->move('bash_profile/uploads/berita/',$newName);
             $Berita->gambar_utama = $newName;
 
         }
@@ -120,9 +121,9 @@ class ControllerBerita extends Controller
 
         $Berita-> judul = $judul;
         $Berita->isi= $isi;
-        $Berita->id_admin= $id_admin;
+        $Berita->id_admin= Session::get('id_admin');
         $Berita->save();
-        return redirect()->route('berita.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('berita.index')->with('alert-success','Success update data!');
     }
 
     /**
@@ -142,14 +143,14 @@ class ControllerBerita extends Controller
             elseif (DB::table('news')->where('id_news',$id_news)->where('isAktif',2)->update([
                 'isAktif' => 1
             ]));
+
+        return redirect()->route('berita.index')->with('alert-success','Success update status data!');
         }
         elseif (Input::get('Hapus'))
         {
-            DB::table('news')->where('id_news',$id_news)->update([
-                'judul' => '', 'isi' => '','tanggal' => '1998-01-01', 'gambar_utama' => 'default.jpg', 'isAktif' => 2, 'id_admin' => 1
-            ]);
-        }
-        return redirect()->route('berita.index')->with('alert-success','Berhasil Menambahkan Data!');
+            $data = ModelBerita::where('id_news',$id_news)->first();
+            $data->delete();
+return redirect()->route('berita.index')->with('alert-success','Success delete data!');        }
     }
     public function uploadImage(Request $request) {
         $CKEditor = $request->input('CKEditor');

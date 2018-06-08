@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ModelSlide;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
@@ -58,11 +59,11 @@ class ControllerSlide extends Controller
         $Slide-> judul = $judul;
         $Slide-> deskripsi = $deskripsi;
         $ext = $gambar->getClientOriginalExtension();
-        $newName = rand(100000,1001238912).".".$ext;
-        $gambar->move('../dtc_profile/uploads/slide/',$newName);
+        $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+        $gambar->move('bash_profile/uploads/slide/',$newName);
         $Slide->gambar = $newName;
         $Slide->save();
-        return redirect()->route('slide.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('slide.index')->with('alert-success','Success insert data!');
     }
 
     /**
@@ -104,17 +105,17 @@ class ControllerSlide extends Controller
             $Slide->gambar = $Slide->gambar;
         }
         else{
-            unlink('../dtc_profile/uploads/slide/'.$Slide->gambar); //menghapus file lama
+            unlink('bash_profile/uploads/slide/'.$Slide->gambar); //menghapus file lama
             $gambar= $request->file('gambar');
             $ext = $gambar->getClientOriginalExtension();
-            $newName = rand(100000,1001238912).".".$ext;
-            $gambar->move('../dtc_profile/uploads/slide/',$newName);
+            $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+            $gambar->move('bash_profile/uploads/slide/',$newName);
             $Slide->gambar = $newName;
         }
         $Slide-> judul = $judul;
         $Slide-> deskripsi = $deskripsi;
         $Slide->save();
-        return redirect()->route('slide.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('slide.index')->with('alert-success','Success update data!');
     }
 
     /**
@@ -134,16 +135,18 @@ class ControllerSlide extends Controller
             elseif (DB::table('slide')->where('id_slide',$id_slide)->where('isAktif',2)->update([
                 'isAktif' => 1
             ]));
+
+        return redirect()->route('slide.index')->with('alert-success','Success update status data!');
+
         }
         elseif (Input::get('Hapus'))
         {
+            $data = ModelSlide::where('id_slide',$id_slide)->first();
+            $data->delete();
+            unlink('bash_profile/uploads/slide/'.$data->gambar);
 
-            DB::table('slide')->where('id_slide',$id_slide)->update([
-                'judul' => '', 'deskripsi' => '', 'gambar' => 'default.jpg', 'isAktif' => 2
-            ]);
+        return redirect()->route('slide.index')->with('alert-success','Success delete data!');
+
         }
-
-        return redirect()->route('slide.index')->with('alert-success','Berhasil Menambahkan Data!');
-
     }
 }

@@ -57,12 +57,12 @@ class ControllerLayanan extends Controller
 
         $Layanan-> judul = $judul;
         $ext = $gambar->getClientOriginalExtension();
-        $newName = rand(100000,1001238912).".".$ext;
-        $gambar->move('assets\images\upload\layanan',$newName);
+        $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+        $gambar->move('bash_profile/uploads/layanan',$newName);
         $Layanan->gambar= $newName;
         $Layanan-> deskripsi = $deskripsi;
         $Layanan->save();
-        return redirect()->route('layanan.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('layanan.index')->with('alert-success','Success insert data!');
     }
 
     /**
@@ -104,17 +104,17 @@ class ControllerLayanan extends Controller
             $Layanan->gambar = $Layanan->gambar;
         }
         else{
-            unlink('assets/images/upload/layanan/'.$Layanan->gambar); //menghapus file lama
+            unlink('bash_profile/uploads/layanan/'.$Layanan->gambar); //menghapus file lama
             $gambar= $request->file('gambar');
             $ext = $gambar->getClientOriginalExtension();
-            $newName = rand(100000,1001238912).".".$ext;
-            $gambar->move('assets/images/upload/layanan/',$newName);
+            $newName = date('Ymd_his').Session::get('id_admin').".".$ext;
+            $gambar->move('bash_profile/uploads/layanan/',$newName);
             $Layanan->gambar = $newName;
         }
         $Layanan-> judul = $judul;
         $Layanan-> deskripsi = $deskripsi;
         $Layanan->save();
-        return redirect()->route('layanan.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('layanan.index')->with('alert-success','Success update data!');
     }
 
     /**
@@ -134,15 +134,16 @@ class ControllerLayanan extends Controller
             elseif (DB::table('layanan')->where('id_layanan',$id_layanan)->where('isAktif',2)->update([
                 'isAktif' => 1
             ]));
+
+        return redirect()->route('layanan.index')->with('alert-success','Success update status data!');
         }
         elseif (Input::get('Hapus'))
         {
             $data = ModelLayanan::where('id_layanan',$id_layanan)->first();
             $data->delete();
-            unlink('assets/images/upload/layanan/'.$data->gambar);
-
+            unlink('bash_profile/uploads/layanan/'.$data->gambar);
+		
+        return redirect()->route('layanan.index')->with('alert-success','Success delete data!');
         }
-
-        return redirect()->route('layanan.index')->with('alert-success','Berhasil Menambahkan Data!');
     }
 }

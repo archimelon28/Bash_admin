@@ -16,7 +16,7 @@ class ControllerAdmin extends Controller
     public function index()
     {
         if(!Session::get('login')){
-            return redirect('login')->with('alert','Kamu harus login dulu');
+            return redirect('login')->with('alert','You must login first');
         }
         else{
             $admin = DB::table('admin')->orderBy('isAktif','asc')
@@ -45,20 +45,24 @@ class ControllerAdmin extends Controller
     {
         $this->validate($request, [
             'nama' => 'required|min:4',
-            'username' => 'required|min:4',
-            'password' => 'required',
+            'username' => 'required|min:4|unique:admin,username',
+            'password' => 'required|min:8',
+            'roles' => 'required|integer|between:1,2',
+            'confirmation' => 'required|same:password',
         ]);
         $Admin = new \App\ModelAdmin();
 
         $nama = $request->input('nama');
-        $username =$request->input('username');
-        $password =$request->input('password');
+        $username = $request->input('username');
+        $password = $request->input('password');
+        $roles = $request->input('roles');
 
-        $Admin-> nama= $nama;
-        $Admin -> username =$username;
-        $Admin-> password = bcrypt($password);
+        $Admin->nama = $nama;
+        $Admin->username = $username;
+        $Admin->password = bcrypt($password);
+        $Admin->roles = $roles;
         $Admin->save();
-        return redirect()->route('admin.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('admin.index')->with('alert-success', 'Success insert data!');
     }
 
     /**
@@ -102,7 +106,7 @@ class ControllerAdmin extends Controller
         $Admin->username = $username;
         $Admin->password = bcrypt($password);
         $Admin->save();
-        return redirect()->route('admin.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('admin.index')->with('alert-success','Success update data!');
     }
 
     /**
@@ -119,6 +123,6 @@ class ControllerAdmin extends Controller
         elseif (DB::table('admin')->where('id_admin',$id_admin)->where('isAktif',2)->update([
             'isAktif' => 1
         ]));
-        return redirect()->route('admin.index')->with('alert-success','Berhasil Menambahkan Data!');
+        return redirect()->route('admin.index')->with('alert-success','Success update status data!');
     }
 }

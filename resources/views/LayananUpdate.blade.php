@@ -55,7 +55,7 @@
                                 <div class="body">
                                     <form action="/" id="frmFileUpload" class="dropzone" method="post" enctype="multipart/form-data">
                                         <div class="fallback">
-                                            <img src="../../assets/images/upload/layanan/{{$Layanan->gambar}}" style="height: 100px;width: 100px">
+                                            <img src="../../bash_profile/uploads/layanan/{{$Layanan->gambar}}" style="height: 100px;width: 100px">
                                         </div>
                                     </form>
                                 </div>

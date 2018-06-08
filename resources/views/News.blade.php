@@ -5,6 +5,11 @@
             <div class="block-header">
             </div>
             <!-- Basic Table -->
+ @if(Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
+                </div>
+            @endif
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -55,7 +60,7 @@
                                                 {{$date1= date("d-m-Y",strtotime($b->tanggal))}}
                                             </div>
                                         </td>
-                                        <td><img src="assets/images/upload/catering/berita/{{$b->gambar_utama}}" style="height: 100px;width: 100px"></td>
+                                        <td><img src="bash_profile/uploads/berita/{{$b->gambar_utama}}" style="height: 100px;width: 100px"></td>
                                         <td>@php if($b->isAktif == 1)
                                             {
                                                 echo "Aktif";

@@ -35,6 +35,9 @@
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="{{asset('assets/css/themes/all-themes.css')}}" rel="stylesheet" />
+
+    <link href="{{asset('assets/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
+
 </head>
 
 <body class="theme-blue">
@@ -87,19 +90,19 @@
                         @php if(Session::get('roles') == 1)
                             {
                         @endphp
-                            <a href="/">
+                            <a href="/bash_admin">
                                 <i class="material-icons">home</i>
                                 <span>Home</span>
                             </a>
                     </li>
                     <li>
-                    <a href="/admin">
+                    <a href="/bash_admin/admin">
                         <i class="material-icons">account_box</i>
                         <span>Admin</span>
                     </a>
                     </li>
                     <li>
-                        <a href="/layanan">
+                        <a href="/bash_admin/layanan">
                             <i class="material-icons">group</i>
                             <span>Layanan</span>
                         </a>
@@ -107,29 +110,29 @@
                     <li>
                     </li>
                     <li>
-                    <a href="/slide">
+                    <a href="/bash_admin/slide">
                         <i class="material-icons">subscriptions</i>
                         <span>Slide</span>
                     </a>
                     </li>
                     <li>
-                    <a href="/berita">
+                    <a href="/bash_admin/berita">
                         <i class="material-icons">assignment</i>
                         <span>Berita</span>
                     </a>
                     </li>
-                    <a href="/pesan">
+                    <a href="/bash_admin/pesan">
                         <i class="material-icons">mail</i>
                         <span>Pesan</span>
                     </a>
                     <li>
-                    <a href="/informasi">
+                    <a href="/bash_admin/informasi">
                         <i class="material-icons">info</i>
                         <span>Informasi</span>
                     </a>
                     </li>
                     <li>
-                    <a href="/logout">
+                    <a href="/bash_admin/logout">
                         <i class="material-icons">lock_open</i>
                         <span>Log Out</span>
                     </a>
@@ -139,41 +142,41 @@
                             {
                         @endphp
                     <li>
-                    <a href="/">
+                    <a href="/bash_admin">
                         <i class="material-icons">home</i>
                         <span>Home</span>
                     </a>
                 </li>
                     <li>
-                        <a href="/layanan">
+                        <a href="/bash_admin/layanan">
                             <i class="material-icons">group</i>
                             <span>Layanan</span>
                         </a>
                     </li>
                 <li>
-                    <a href="/slide">
+                    <a href="/bash_admin/slide">
                         <i class="material-icons">subscriptions</i>
                         <span>Slide</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/berita">
+                    <a href="/bash_admin/berita">
                         <i class="material-icons">assignment</i>
                         <span>Berita</span>
                     </a>
                 </li>
-                    <a href="/pesan">
+                    <a href="/bash_admin/pesan">
                         <i class="material-icons">mail</i>
                         <span>Pesan</span>
                     </a>
                 <li>
-                    <a href="/informasi">
+                    <a href="/bash_admin/informasi">
                         <i class="material-icons">info</i>
                         <span>Informasi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/logout">
+                    <a href="/bash_admin/logout">
                         <i class="material-icons">lock_open</i>
                         <span>Log Out</span>
                     </a>
@@ -187,7 +190,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; 2016 - 2017 <a href="javascript:void(0);">Admin Bash</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5

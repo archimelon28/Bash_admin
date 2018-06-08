@@ -5,6 +5,11 @@
             <div class="block-header">
             </div>
             <!-- Basic Table -->
+@if(Session::has('alert-success'))
+                <div class="alert alert-success">
+                    <strong>{{ \Illuminate\Support\Facades\Session::get('alert-success') }}</strong>
+                </div>
+            @endif
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -43,7 +48,7 @@
                                             <div style="width: 400px;overflow: hidden;display: inline-block;">
                                                 {{str_limit($s->deskripsi,200)}}
                                             </div></td>
-                                        <td><img src="assets\images\upload\catering\slide\{{$s->gambar}}" style="height: 100px;width: 100px"></td>
+                                        <td><img src="bash_profile/uploads/slide/{{$s->gambar}}" style="height: 100px;width: 100px"></td>
                                         <td>@php if($s->isAktif == 1)
                                             {
                                                 echo "Aktif";

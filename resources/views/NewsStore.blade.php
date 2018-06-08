@@ -69,19 +69,11 @@
                                             <input name="gambar_utama" type="file"/>
                                         </div>
                                     </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row clearfix" >
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="card" >
-                                <div class="body">
-                                    <div style="text-align: right">
-                                        <button type="submit" class="btn btn-sm btn-primary">
-                                            Save
-                                        </button>
-                                    </div>
+<div style="text-align: right">
+                                                <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">save</i>
+                                                </button>
+                                            </div>
                                 </div>
                             </div>
                         </div>

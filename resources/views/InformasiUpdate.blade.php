@@ -169,9 +169,11 @@
                                 <div class="form-group">
                                     <label for="email">File:</label>
                                     <input name="logo" type="file"/>
-                                    <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
-                                        <i class="material-icons">save</i>
-                                    </button>
+                                    <div style="text-align: right">
+                                                <button type="submit" class="btn btn-default btn-circle-lg waves-effect waves-circle waves-float">
+                                                    <i class="material-icons">save</i>
+                                                </button>
+                                            </div>
                                 </div>
                             </div>
                         </div>
